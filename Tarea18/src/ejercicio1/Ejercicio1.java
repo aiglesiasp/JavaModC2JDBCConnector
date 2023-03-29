@@ -29,6 +29,7 @@ public class Ejercicio1 {
 				+ "PRIMARY KEY (CODIGO)," + "  KEY FABRICANTE (`FABRICANTE`),"
 				+ "CONSTRAINT `articulos_ibfk_1` FOREIGN KEY (FABRICANTE) REFERENCES fabricantes (CODIGO));");
 
+		c.insertData("tienda_informatica", "fabricantes", "CODIGO, NOMBRE", "1, 'Aitor Iglesias'");
 		c.closeConnection();
 	}
 

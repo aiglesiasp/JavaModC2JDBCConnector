@@ -3,14 +3,18 @@
  */
 package connection;
 
+import java.lang.reflect.Constructor;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
+
+import models.Fabricante;
 
 /**
  * @author aitor
@@ -87,6 +91,24 @@ public class Connector {
 			System.out.println(ex.getMessage());
 			System.out.println("Error creando tabla "+name);
 		}
+	}
+	
+	public void insertData(String db, String tableName, String entradas, String valores) {
+		try {
+			String Querydb = "USE " + db + ";";
+			Statement stdb = conect.createStatement();
+			stdb.executeUpdate(Querydb);
+			
+			String Query = "iNSERT INTO " +tableName+ " ("+entradas+") VALUE("+valores+");";
+			
+			Statement st = conect.createStatement();
+			st.executeUpdate(Query);
+			System.out.println("Datos insertados correctamente en la table " +tableName);
+		} catch(SQLException ex) {
+			System.out.println(ex.getMessage());
+			System.out.println("Error insertando datos en la tabla "+tableName);
+		}
+		
 	}
 	
 	
