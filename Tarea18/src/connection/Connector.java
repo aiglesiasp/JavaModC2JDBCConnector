@@ -6,6 +6,7 @@ package connection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,7 +29,7 @@ public class Connector {
 	}
 
 	// CREAR CONNECTION
-	private Connection createConnection(String user, String password) {
+	public Connection createConnection(String user, String password) {
 		Connection conexion = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -38,27 +39,36 @@ public class Connector {
 			System.out.print("No se ha podido conectar con mi base de datos");
 			System.out.print(ex);
 		}
+		this.conect = conexion; 
 		return conexion;
 	}
 
 	
-	// INICIAR CONEXION
-	public Connection getConnection(String user, String password) {
-		this.conect = createConnection(user, password);
-		return this.conect;
-
-	}
-
-	
 	// CLOSE CONNECTION
-	public void closeConnection(Connection conexion) {
+	public void closeConnection() {
 		try {
-			conexion.close();
+			conect.close();
 			JOptionPane.showMessageDialog(null, "Se ha finalizado la conexion con el servidor");
 		} catch (SQLException ex) {
 			Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
 
 		}
 	}
+	//METODO QUE CREA BASE DE DATOS; 
+	public void createDB (String name) {
+		try{
+			String Query = "CREATE DATABASE " + name; 
+			Statement st = conect.createStatement();
+			st.executeUpdate(Query); 
+			
+			//closeConnection();
+			JOptionPane.showMessageDialog(null, "Se ha creado la base de datos " + name);
+			
+			
+		}catch(SQLException ex) {
+			Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex); 
+		}
+	}
+
 
 }
