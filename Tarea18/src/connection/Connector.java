@@ -52,7 +52,7 @@ public class Connector {
 	// METODO QUE CREA BASE DE DATOS;
 	public void createDB(String name) {
 		try {
-			String Query = "CREATE DATABASE " + name;
+			String Query = "CREATE DATABASE IF NOT EXISTS " + name;
 			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
 
@@ -72,7 +72,7 @@ public class Connector {
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
 			
-			String Query = "CREATE TABLE " + name + "" + datos;
+			String Query = "CREATE TABLE IF NOT EXISTS " + name + "" + datos;
 			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
 			
@@ -89,7 +89,7 @@ public class Connector {
 			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
 			
-			String Query = "iNSERT INTO " +tableName+ " ("+entradas+") VALUE("+valores+");";
+			String Query = "INSERT INTO " +tableName+ " ("+entradas+") VALUE("+valores+");";
 			
 			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
