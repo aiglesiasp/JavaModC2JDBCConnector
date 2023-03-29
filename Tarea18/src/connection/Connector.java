@@ -70,5 +70,10 @@ public class Connector {
 		}
 	}
 
+	//METODO CREAR TABLAS MYSQL
+	
+	public static void createTable(String db,String name, String datos) {
+		
+	}
 
 }
