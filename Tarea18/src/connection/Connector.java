@@ -33,17 +33,17 @@ public class Connector {
 		Connection conexion = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306?useTimezone=true&serverTimezone=UTC", user, password);
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306?useTimezone=true&serverTimezone=UTC",
+					user, password);
 			System.out.print("Server Connected");
 		} catch (SQLException | ClassNotFoundException ex) {
 			System.out.print("No se ha podido conectar con mi base de datos");
 			System.out.print(ex);
 		}
-		this.conect = conexion; 
+		this.conect = conexion;
 		return conexion;
 	}
 
-	
 	// CLOSE CONNECTION
 	public void closeConnection() {
 		try {
@@ -54,26 +54,37 @@ public class Connector {
 
 		}
 	}
-	//METODO QUE CREA BASE DE DATOS; 
-	public void createDB (String name) {
-		try{
-			String Query = "CREATE DATABASE " + name; 
+
+	// METODO QUE CREA BASE DE DATOS;
+	public void createDB(String name) {
+		try {
+			String Query = "CREATE DATABASE " + name;
 			Statement st = conect.createStatement();
-			st.executeUpdate(Query); 
-			
-			//closeConnection();
+			st.executeUpdate(Query);
+
+			// closeConnection();
 			JOptionPane.showMessageDialog(null, "Se ha creado la base de datos " + name);
-			
-			
-		}catch(SQLException ex) {
-			Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex); 
+
+		} catch (SQLException ex) {
+			Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 
-	//METODO CREAR TABLAS MYSQL
-	
-	public static void createTable(String db,String name, String datos) {
-		
+	// METODO CREAR TABLAS MYSQL
+
+	public void createTable(String db, String name, String datos) {
+		try {
+			String Querydb = "USE " + db + "; ";
+			Statement stdb = conect.createStatement();
+			stdb.executeUpdate(Querydb);
+			String Query = "CREATE TABLE " + name + "" + datos;
+			Statement st = conect.createStatement();
+			st.executeUpdate(Query);
+			JOptionPane.showMessageDialog(null, "tabla creada con exito");
+		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+			System.out.println("Error creando tabla.");
+		}
 	}
 
 }
