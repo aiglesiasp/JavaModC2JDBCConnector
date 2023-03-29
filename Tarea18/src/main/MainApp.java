@@ -25,8 +25,6 @@ public class MainApp {
 		// TODO Auto-generated method stub
 
 		Connector conect = new Connector();
-		//conect.initConnection("root", "root");
 		conect.initConnection("root", "Camila1234_");
-		
 	}
 }
