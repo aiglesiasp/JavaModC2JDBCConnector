@@ -3,18 +3,13 @@
  */
 package connection;
 
-import java.lang.reflect.Constructor;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.JOptionPane;
-
-import models.Fabricante;
 
 /**
  * @author aitor
@@ -22,40 +17,35 @@ import models.Fabricante;
  */
 public class Connector {
 
-	private Connection conect;
+	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+	private static final String URL = "jdbc:mysql://localhost:3306?useTimezone=true&serverTimezone=UTC";
 
-	public Connector() {
-		this.conect = null;
-	}
+	private static Connection conexion = null;
 
-	public Connection getConect() {
-		return conect;
-	}
-
-	// CREAR CONNECTION
-	public Connection createConnection(String user, String password) {
-		Connection conexion = null;
+	//CREAR CONEXIÓN
+	public Connector(String user, String password) {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306?useTimezone=true&serverTimezone=UTC",
-					user, password);
+			Class.forName(DRIVER);
+			conexion = DriverManager.getConnection(URL, user, password);
 			System.out.println("Server Connected");
-		} catch (SQLException | ClassNotFoundException ex) {
+		} catch(SQLException | ClassNotFoundException ex) {
 			System.out.print("No se ha podido conectar con mi base de datos");
 			System.out.println(ex);
 		}
-		this.conect = conexion;
+	}
+	
+	public static Connection getConexion() {
 		return conexion;
 	}
 
 	// CLOSE CONNECTION
 	public void closeConnection() {
 		try {
-			conect.close();
+			conexion.close();
 			System.out.println("Se ha finalizado la conexion con el servidor");
-		} catch (SQLException ex) {
-			Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
-
+		} catch(SQLException ex) {
+			System.err.println("Error al cerrar la conexión con la base de datos");
+			System.out.println(ex);
 		}
 	}
 
@@ -63,7 +53,7 @@ public class Connector {
 	public void createDB(String name) {
 		try {
 			String Query = "CREATE DATABASE " + name;
-			Statement st = conect.createStatement();
+			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
 
 			// closeConnection();
@@ -79,11 +69,11 @@ public class Connector {
 	public void createTable(String db, String name, String datos) {
 		try {
 			String Querydb = "USE " + db + ";";
-			Statement stdb = conect.createStatement();
+			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
 			
 			String Query = "CREATE TABLE " + name + "" + datos;
-			Statement st = conect.createStatement();
+			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
 			
 			System.out.println("Tabla " +name+ " creada con exito");
@@ -96,12 +86,12 @@ public class Connector {
 	public void insertData(String db, String tableName, String entradas, String valores) {
 		try {
 			String Querydb = "USE " + db + ";";
-			Statement stdb = conect.createStatement();
+			Statement stdb = conexion.createStatement();
 			stdb.executeUpdate(Querydb);
 			
 			String Query = "iNSERT INTO " +tableName+ " ("+entradas+") VALUE("+valores+");";
 			
-			Statement st = conect.createStatement();
+			Statement st = conexion.createStatement();
 			st.executeUpdate(Query);
 			System.out.println("Datos insertados correctamente en la table " +tableName);
 		} catch(SQLException ex) {
