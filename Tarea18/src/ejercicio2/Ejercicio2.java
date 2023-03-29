@@ -6,8 +6,7 @@ public class Ejercicio2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Connector c = new Connector();
-		c.createConnection("root", "root");
+		Connector c = new Connector("root", "root");
 
 		c.createDB("empleados");
 		
