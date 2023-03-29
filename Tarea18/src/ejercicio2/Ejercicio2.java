@@ -13,12 +13,12 @@ public class Ejercicio2 {
 		
 		c.createTable("empleados", "departamentos",
 				"(`CODIGO` int NOT NULL,\n"
-				+ "  `NOMBRE` varchar(255) NOT NULL,\n"
+				+ "  `NOMBRE` varchar(100) NOT NULL,\n"
 				+ "  `PRESUPUESTO` decimal(10,0) NOT NULL,\n"
 				+ "  PRIMARY KEY (`CODIGO`));");
 		
 		c.createTable("empleados", "empleados", "( `DNI` int NOT NULL,\n"
-				+ "  `NOMBRE` varchar(255) NOT NULL,\n"
+				+ "  `NOMBRE` varchar(100) NOT NULL,\n"
 				+ "  `APELLIDOS` varchar(255) NOT NULL,\n"
 				+ "  `DEPARTAMENTO` int NOT NULL,\n"
 				+ "  PRIMARY KEY (`DNI`),\n"
