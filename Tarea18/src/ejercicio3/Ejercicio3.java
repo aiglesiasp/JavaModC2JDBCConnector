@@ -18,24 +18,24 @@ public class Ejercicio3 {
 		// TODO Auto-generated method stub
 
 		Connector c = new Connector();
-		c.createConnection("root", "Camila1234_");
+		c.createConnection("root", "root");
 
 		c.createDB("losalmacenes");
 		
 		c.createTable("losalmacenes", "almacenes",
-				"( `CODIGO` int NOT NULL,\n"
-				+ "  `LUGAR` varchar(100) NOT NULL,\n"
-				+ "  `CAPACIDAD` int NOT NULL,\n"
-				+ "  PRIMARY KEY (`CODIGO`));");
+				"(CODIGO int NOT NULL,"
+				+ "LUGAR varchar(100) NOT NULL,"
+				+ "CAPACIDAD int NOT NULL,"
+				+ "PRIMARY KEY (CODIGO));");
 		
-		c.createTable("losalmacenes", "cajas_",
-				"(`NUMREFERENCIA` char(5) NOT NULL,\n"
-				+ "  `CONTENIDO` varchar(100) NOT NULL,\n"
-				+ "  `VALOR` double NOT NULL,\n"
-				+ "  `ALMACEN` int NOT NULL,\n"
-				+ "  PRIMARY KEY (`NUMREFERENCIA`),\n"
-				+ "  KEY `ALMACEN` (`ALMACEN`),\n"
-				+ "  CONSTRAINT `cajas_ibfk_1` FOREIGN KEY (`ALMACEN`) REFERENCES `almacenes` (`CODIGO`));");
+		c.createTable("losalmacenes", "cajas",
+				"(NUMREFERENCIA char(5) NOT NULL,"
+				+ "CONTENIDO varchar(100) NOT NULL,"
+				+ "VALOR double NOT NULL,"
+				+ "ALMACEN int NOT NULL,"
+				+ "PRIMARY KEY (NUMREFERENCIA),"
+				+ "KEY ALMACEN (ALMACEN),"
+				+ "CONSTRAINT cajas_ibfk_1 FOREIGN KEY (ALMACEN) REFERENCES almacenes (CODIGO));");
 
 		c.closeConnection();
 	}

@@ -35,10 +35,10 @@ public class Connector {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306?useTimezone=true&serverTimezone=UTC",
 					user, password);
-			System.out.print("Server Connected");
+			System.out.println("Server Connected");
 		} catch (SQLException | ClassNotFoundException ex) {
 			System.out.print("No se ha podido conectar con mi base de datos");
-			System.out.print(ex);
+			System.out.println(ex);
 		}
 		this.conect = conexion;
 		return conexion;
@@ -48,7 +48,7 @@ public class Connector {
 	public void closeConnection() {
 		try {
 			conect.close();
-			JOptionPane.showMessageDialog(null, "Se ha finalizado la conexion con el servidor");
+			System.out.println("Se ha finalizado la conexion con el servidor");
 		} catch (SQLException ex) {
 			Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -63,28 +63,32 @@ public class Connector {
 			st.executeUpdate(Query);
 
 			// closeConnection();
-			JOptionPane.showMessageDialog(null, "Se ha creado la base de datos " + name);
+			System.out.println("Se ha creado la base de datos " + name);
 
 		} catch (SQLException ex) {
+			System.out.println("Error al crear la base de datos "+name);
 			Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
 
 	// METODO CREAR TABLAS MYSQL
-
 	public void createTable(String db, String name, String datos) {
 		try {
-			String Querydb = "USE " + db + "; ";
+			String Querydb = "USE " + db + ";";
 			Statement stdb = conect.createStatement();
 			stdb.executeUpdate(Querydb);
+			
 			String Query = "CREATE TABLE " + name + "" + datos;
 			Statement st = conect.createStatement();
 			st.executeUpdate(Query);
-			JOptionPane.showMessageDialog(null, "tabla creada con exito");
+			
+			System.out.println("Tabla " +name+ " creada con exito");
 		} catch (SQLException ex) {
 			System.out.println(ex.getMessage());
-			System.out.println("Error creando tabla.");
+			System.out.println("Error creando tabla "+name);
 		}
 	}
+	
+	
 
 }
