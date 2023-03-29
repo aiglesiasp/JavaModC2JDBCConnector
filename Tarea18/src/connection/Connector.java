@@ -28,12 +28,11 @@ public class Connector {
 	}
 
 	// CREAR CONNECTION
-	private Connection createConnection() {
+	private Connection createConnection(String user, String password) {
 		Connection conexion = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306?useTimezone=true&serverTimezone=UTC",
-					"root", "root");
+			conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306?useTimezone=true&serverTimezone=UTC", user, password);
 			System.out.print("Server Connected");
 		} catch (SQLException | ClassNotFoundException ex) {
 			System.out.print("No se ha podido conectar con mi base de datos");
@@ -44,8 +43,8 @@ public class Connector {
 
 	
 	// INICIAR CONEXION
-	public Connection getConnection() {
-		this.conect = createConnection();
+	public Connection getConnection(String user, String password) {
+		this.conect = createConnection(user, password);
 		return this.conect;
 
 	}
