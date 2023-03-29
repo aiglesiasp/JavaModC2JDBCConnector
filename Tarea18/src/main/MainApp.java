@@ -23,9 +23,8 @@ public class MainApp {
 		// TODO Auto-generated method stub
 
 		try {
-			Class.forName("com.mysql.cj.jdbc-Driver");
-			Connection conexion = DriverManager
-					.getConnection("jdbc:mysql:localhost:3306?useTimezone-trueßserverTimezone-UTC", "root", "Camila1234_");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306?useTimezone=true&serverTimezone=UTC", "root", "root");
 			System.out.print("Server Connected");
 		} catch (SQLException | ClassNotFoundException ex) {
 			System.out.print("No se ha podido conectar con mi base de datos");
