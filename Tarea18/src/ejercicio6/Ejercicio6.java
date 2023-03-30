@@ -35,9 +35,9 @@ public class Ejercicio6 {
 		
 		//Create table "proveedores"
 		c.createTable(DATABASE, "proveedores", "(" 
-				+ "id CHAR(4) PRIMARY KEY,"
-				+ "nombre VARCHAR(100) NOT NULL"
-				+ ");");
+			+ "id CHAR(4) PRIMARY KEY,"
+			+ "nombre VARCHAR(100) NOT NULL"
+			+ ");");
 				
 		//Create table "sumistra"
 		c.createTable(DATABASE, "sumistra", "("
