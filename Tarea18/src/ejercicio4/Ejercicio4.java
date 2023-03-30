@@ -12,7 +12,7 @@ public class Ejercicio4 {
 		final String USER = "root";
 		final String PASSWORD = "Pa$$w0rd";
 		
-		final String DATABASE = "Peliculas_y_salas";
+		final String DATABASE = "peliculas_y_salas";
 		
 		//Create a new connection to database
 		Connector c = new Connector(USER, PASSWORD);
