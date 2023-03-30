@@ -13,7 +13,7 @@ public class Ejercicio5 {
 		//Create a new connection to database
 		Connector c = new Connector(USER, PASSWORD);
 				
-		//Create the "Peliculas_y_salas" database
+		//Create the "los_directores" database
 		c.createDB(DATABASE);
 		
 		//Create tables for database
