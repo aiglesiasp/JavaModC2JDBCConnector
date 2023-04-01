@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package ejercicio4;
 
 import connection.Connector;
@@ -9,6 +12,7 @@ import connection.Connector;
 public class Ejercicio4 {
 
 	/**
+	 * Main execution method
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -31,6 +35,11 @@ public class Ejercicio4 {
 		c.closeConnection();
 	}
 	
+	/**
+	 * This method creates the database.
+	 * @param c
+	 * @param DATABASE
+	 */
 	public static void createTables(Connector c, String DATABASE) {
 		//Create table "peliculas"
 		c.createTable(DATABASE, "peliculas", "(" 
@@ -49,6 +58,11 @@ public class Ejercicio4 {
 			+ ");");
 	}
 
+	/**
+	 * This method inserts data into the database.
+	 * @param c
+	 * @param DATABASE
+	 */
 	public static void insertTables(Connector c, String DATABASE) {
 		//Insert into "peliculas"
 		c.insertData(DATABASE, "peliculas", "nombre, calificaion_edad", "'STAR WARS: Episode I - The Phantom Menace', 12");

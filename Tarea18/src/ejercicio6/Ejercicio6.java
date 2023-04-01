@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package ejercicio6;
 
 import connection.Connector;
@@ -7,7 +10,11 @@ import connection.Connector;
  *
  */
 public class Ejercicio6 {
-
+	
+	/**
+	 * Main execution method
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 		final String DATABASE = "piezas_y_proveedores";
@@ -28,6 +35,11 @@ public class Ejercicio6 {
 		c.closeConnection();
 	}
 	
+	/**
+	 * This method creates the database.
+	 * @param c
+	 * @param DATABASE
+	 */
 	public static void createTables(Connector c, String DATABASE) {
 		//Create table "piezas"
 		c.createTable(DATABASE, "piezas", "(" 
@@ -52,6 +64,11 @@ public class Ejercicio6 {
 			+ ");");
 	}
 	
+	/**
+	 * This method inserts data into the database.
+	 * @param c
+	 * @param DATABASE
+	 */
 	public static void insertTables(Connector c, String DATABASE) {
 		//Insert into "piezas"
 		c.insertData(DATABASE, "piezas", "nombre", "'GeForce RTX 3060'");
