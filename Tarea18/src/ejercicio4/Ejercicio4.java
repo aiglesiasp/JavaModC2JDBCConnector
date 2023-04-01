@@ -2,6 +2,10 @@ package ejercicio4;
 
 import connection.Connector;
 
+/**
+ * @author Javier
+ *
+ */
 public class Ejercicio4 {
 
 	/**
@@ -9,13 +13,10 @@ public class Ejercicio4 {
 	 */
 	public static void main(String[] args) {
 		
-		final String USER = "root";
-		final String PASSWORD = "Pa$$w0rd";
-		
 		final String DATABASE = "peliculas_y_salas";
 		
 		//Create a new connection to database
-		Connector c = new Connector(USER, PASSWORD);
+		Connector c = new Connector();
 				
 		//Create the "Peliculas_y_salas" database
 		c.createDB(DATABASE);

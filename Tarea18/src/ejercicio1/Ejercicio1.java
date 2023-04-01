@@ -16,7 +16,7 @@ public class Ejercicio1 {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Connector c = new Connector("root", "Camila1234_");
+		Connector c = new Connector();
 
 		c.createDB("tienda_informatica");
 		c.createTable("tienda_informatica", "fabricantes",

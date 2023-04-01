@@ -15,7 +15,7 @@ public class Ejercicio9 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Connector c = new Connector("root", "root");
+		Connector c = new Connector();
 		c.createDB("investigadores");
 		c.createTable("investigadores", "facultad", 
 				"(CODIGO int NOT NULL,"

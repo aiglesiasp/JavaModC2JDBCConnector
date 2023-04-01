@@ -2,16 +2,18 @@ package ejercicio6;
 
 import connection.Connector;
 
+/**
+ * @author Javier
+ *
+ */
 public class Ejercicio6 {
 
 	public static void main(String[] args) {
-		final String USER = "root";
-		final String PASSWORD = "Pa$$w0rd";
 		
 		final String DATABASE = "piezas_y_proveedores";
 		
 		//Create a new connection to database
-		Connector c = new Connector(USER, PASSWORD);
+		Connector c = new Connector();
 				
 		//Create the "piezas_y_proveedores" database
 		c.createDB(DATABASE);
